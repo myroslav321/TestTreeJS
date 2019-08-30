@@ -19,7 +19,7 @@ class TreeBuilder {
     }
 
     listToTree (arr) {
-        const _createNestedArray = (items, id = 1) => {
+        const _createNestedArray = (items, id = 0) => {
           return items.filter(item => item['parent'] == id).map(item => (
             { ...item, children: _createNestedArray(items, item.id)}
           ));
