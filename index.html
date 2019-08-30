@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Tree</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+  <div class="tree"></div>
+  <script src="js/tree-api.js"></script>
+  <script src="js/tree.js"></script>
+  <script>
+    const tree = new TreeBuilder(document.querySelector('.tree'))
+    window.TreeAPI.getData().then(response => tree.init(response.data))
+  </script>
+</body>
+</html>
