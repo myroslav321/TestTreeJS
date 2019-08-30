@@ -4,16 +4,40 @@ class TreeBuilder {
     }
   
     init (data) {
-      this.render(this.listToTree(data))
+      this.data = data;
+      this.render(this.listToTree(this.data))
+      this.clickHendler()
+    }
+
+    clickHendler() {
+      this.$container.addEventListener('click', (e) => {
+        if (e.target.className === 'remove-node') {
+          this.removeNode(e.target.getAttribute('data-id'))
+        }
+      })
+    }
+
+    removeNode(id) {
+      this.data = this.data.filter(item => item.id !== id)
+      this.render(this.listToTree(this.data))
     }
 
     getTemplateString(dataTree = []) {
-      const itemTemplate = (item, callback) => `<li><span>${item.id}</span>${callback(item.children)}</li>`;
+      const itemTemplate = (item, callback) => (
+        `<li>
+          <span>
+            ${item.id}
+            <button class="remove-node" data-id="${item.id}">x</button>
+          </span>
+          ${callback(item.children)}
+        </li>`
+      );
       const _map = (dataTree) => dataTree.length ? `<ul>${dataTree.map(item => itemTemplate(item, _map))}</ul>` : '';
       return _map(dataTree);
     }
 
     render(dataTree) {
+      this.$container.innerHTML = '';
       let templateString = this.getTemplateString(dataTree).replace(/,/g , '');
       this.$container.appendChild(document.createRange().createContextualFragment(templateString));
     }

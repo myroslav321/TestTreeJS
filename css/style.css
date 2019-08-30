@@ -18,24 +18,36 @@
 
 .tree li {
     text-align: center;
-	position: relative;
-	padding: 20px;
+    position: relative;
+    padding: 20px;
 }
 
 .tree li::before,
 .tree li::after {
-	content: '';
+    content: '';
     position: absolute;
     top: 0;
     right: 50%;
-	border-top: 2px solid #ccc;
+    border-top: 2px solid #ccc;
     width: 50%;
     height: 20px;
 }
+
 .tree li::after {
     right: auto;
     left: 50%;
     border-left: 2px solid #ccc;
+}
+
+.tree .remove-node {
+    border: none;
+    color: red;
+    font-size: 18px;
+    position: absolute;
+    top: 0;
+    right: 5px;
+    cursor: pointer;
+    outline: 0;
 }
 
 .tree li:only-child::after,
@@ -49,7 +61,7 @@
 
 .tree li:first-child::before,
 .tree li:last-child::after {
-	border: 0 none;
+    border: 0 none;
 }
 
 .tree li:last-child::before {
@@ -74,4 +86,5 @@
     color: #666;
     font-size: 34px;
     display: inline-block;
+    position: relative;
 }
