@@ -28,6 +28,7 @@ class TreeBuilder {
           <span>
             ${item.id}
             <button class="remove-node" data-id="${item.id}">x</button>
+            ${item.caption ? `<br><i>${item.caption}</i>` : ''}
           </span>
           ${callback(item.children)}
         </li>`
